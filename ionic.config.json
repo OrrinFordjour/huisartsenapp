@@ -1,0 +1,7 @@
+{
+  "name": "huisarstenapp",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "vue"
+}
