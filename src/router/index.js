@@ -4,6 +4,7 @@ import Tabs from '../views/Tabs.vue'
 import Login from '../pages/Login.vue'
 import SignPage from '../pages/SignPage.vue'
 import ChatWindow from '../views/ChatWindow.vue'
+import firebase from 'firebase'
 
 
 const routes= [
@@ -15,7 +16,7 @@ const routes= [
   {
     path: '/signup',
     component: SignPage,
-    name: 'signpage',
+    name: 'signup',
   },
   {
     path: '/tab1/:id',
@@ -37,11 +38,17 @@ const routes= [
   {
     path: '/tabs/',
     component: Tabs,
+    meta: {
+      requiresAuth: true
+    },
     children: [
 
       {
         path: 'tab1',
         name: 'tab1',
+        meta: {
+          requiresAuth: true
+        },
         component: () => import('@/views/Homepage.vue')
       },
       {
@@ -73,6 +80,19 @@ const routes= [
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
+})
+
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(rec => rec.meta.requiresAuth)) {
+    let user = firebase.auth().currentUser
+    if (user) {
+      next()
+    } else {
+      next({ name: 'login'})
+    }
+  } else {
+    next ()
+  }
 })
 
 export default router
