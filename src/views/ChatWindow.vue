@@ -47,7 +47,9 @@ import {
   IonItem,
   IonText,
   IonLabel,
-  
+  IonTitle,
+  IonToolbar,
+  IonHeader,
 } from "@ionic/vue";
 export default {
   name: "ChatWindow",
@@ -59,10 +61,12 @@ export default {
     IonCardContent,
     IonList,
     IonItem,
-
     IonLabel,
     IonText,
     NewMessage,
+    IonTitle,
+    IonToolbar,
+    IonHeader,
   },
   data() {
     return {

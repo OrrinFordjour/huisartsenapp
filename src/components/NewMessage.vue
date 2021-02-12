@@ -16,7 +16,7 @@
 </template>
 
 <script>
-/* import db from "../firebase/init"; */
+import db from "../firebase/init";
 import { IonLabel, IonInput } from "@ionic/vue";
 export default {
   name: "NewMessage",
@@ -31,7 +31,7 @@ export default {
       feedback: null,
     };
   },
-  /* methods: {
+  methods: {
     addMessage() {
       if (this.newMessage) {
         db.collection("messages")
@@ -50,7 +50,7 @@ export default {
           "wilt u wat versturen dan moet er een bericht in gevoerd worden";
       }
     },
-  }, */
+  },
 };
 </script>
 
