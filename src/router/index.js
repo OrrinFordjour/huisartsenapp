@@ -18,6 +18,10 @@ const routes= [
     name: 'signpage',
   },
   {
+    path: '/tab1/:id',
+    component: () => import('@/views/NieuwsDetails.vue')
+  },
+  {
     path: '/chatwindow',
     name: 'ChatWindow',
     component: ChatWindow,

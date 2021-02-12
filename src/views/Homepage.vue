@@ -7,7 +7,7 @@
     </ion-header>
     <ion-content :fullscreen="true">
       <ion-list>
-        <ion-item router-link="/home/1"
+        <ion-item router-link="/tab1/1"
           >Marc Van Zegen is vandaag ziek</ion-item
         >
         <ion-item>Dit weekend zijn we geopend</ion-item>
