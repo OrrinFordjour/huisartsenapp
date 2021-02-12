@@ -47,8 +47,8 @@ import {
   IonButton,
   IonLabel,
 } from "@ionic/vue";
-/* import db from "@/firebase/init";
-import firebase from "firebase"; */
+import db from "@/firebase/init";
+import firebase from "firebase";
 export default {
   name: "signpage",
   components: {
@@ -72,7 +72,7 @@ export default {
       slug: null,
     };
   },
-  /* methods: {
+  methods: {
     signup() {
       if (this.naam && this.email && this.password) {
         this.slug = this.naam
@@ -93,7 +93,7 @@ export default {
                   user_id: cred.user.uid,
                 });
               }).then(() => {
-                this.$router.push({ name: "home" });
+                this.$router.push({ name: "tab1" });
               })
               .catch((err) => {
                 console.log(err);
@@ -106,7 +106,7 @@ export default {
         this.feedback = "allen veld moet ingevuld worden.!";
       }
     },
-  }, */
+  },
 };
 </script>
 

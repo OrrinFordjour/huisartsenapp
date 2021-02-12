@@ -43,8 +43,7 @@ import {
   IonButton,
   IonLabel,
 } from "@ionic/vue";
-/* import db from "@/firebase/init"; */
-/* import firebase from "firebase"; */
+import firebase from "firebase";
 export default {
   name: "login",
   components: {
@@ -66,7 +65,7 @@ export default {
       feedback: null,
     };
   },
-/*   methods: {
+  methods: {
     login() {
       if(this.email, this.password) {
           firebase.auth().signInWithEmailAndPassword(this.email, this.password)
@@ -81,7 +80,7 @@ export default {
           this.feedback = 'vul beide velden in'
       }
     },
-  }, */
+  },
 };
 </script>
 

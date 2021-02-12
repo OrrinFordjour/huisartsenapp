@@ -41,6 +41,7 @@ const routes= [
 
       {
         path: 'tab1',
+        name: 'tab1',
         component: () => import('@/views/Homepage.vue')
       },
       {
