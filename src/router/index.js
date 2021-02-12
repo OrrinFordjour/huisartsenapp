@@ -3,6 +3,7 @@ import { createRouter, createWebHistory } from '@ionic/vue-router';
 import Tabs from '../views/Tabs.vue'
 import Login from '../pages/Login.vue'
 import SignPage from '../pages/SignPage.vue'
+import ChatWindow from '../views/ChatWindow.vue'
 
 
 const routes= [
@@ -15,6 +16,19 @@ const routes= [
     path: '/signup',
     component: SignPage,
     name: 'signpage',
+  },
+  {
+    path: '/chatwindow',
+    name: 'ChatWindow',
+    component: ChatWindow,
+    props: true,
+    beforeEnter: (to, from, next) => {
+      if (to.params.name) {
+        next()
+      } else {
+        next({ name: 'chat' })
+      }
+    }
   },
   {
     path: '/tabs/',
@@ -44,7 +58,8 @@ const routes= [
       ,
       {
         path: 'tab6',
-        component: () => import('@/views/ChatPage.vue')
+        component: () => import('@/views/ChatPage.vue'),
+        children: []
       }
     ]
   }
