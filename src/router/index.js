@@ -38,17 +38,17 @@ const routes= [
   {
     path: '/tabs/',
     component: Tabs,
-    meta: {
+/*     meta: {
       requiresAuth: true
-    },
+    }, */
     children: [
 
       {
         path: 'tab1',
         name: 'tab1',
-        meta: {
+/*         meta: {
           requiresAuth: true
-        },
+        }, */
         component: () => import('@/views/Homepage.vue')
       },
       {
@@ -70,9 +70,13 @@ const routes= [
       ,
       {
         path: 'tab6',
-        component: () => import('@/views/ChatPage.vue'),
-        children: []
-      }
+        component: () => import('@/views/ChatPage.vue')
+      },
+      {
+        path: 'tab7',
+        component: () => import('@/views/SpoedAlarm.vue')
+      },
+      
     ]
   }
 ]

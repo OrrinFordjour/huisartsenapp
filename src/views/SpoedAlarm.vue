@@ -1,0 +1,77 @@
+<template>
+  <ion-page>
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>SpoedAlarm</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content :fullscreen="true">
+      <ion-item-divider></ion-item-divider>
+      <ion-button @click="presentAlertConfirm" class="ion-padding" expand="block"
+        >ALAMEER HUISARTS</ion-button>
+    </ion-content>
+  </ion-page>
+</template>
+
+<script>
+import {
+  IonPage,
+  IonToolbar,
+  IonHeader,
+  IonContent,
+  IonTitle,
+  IonButton,
+  IonItemDivider,
+  alertController
+} from "@ionic/vue";
+export default {
+  name: "spoedalarm",
+  components: {
+    IonPage,
+    IonToolbar,
+    IonHeader,
+    IonContent,
+    IonTitle,
+    IonButton,
+    IonItemDivider,
+  },
+  methods: {
+    async presentAlertConfirm() {
+      const alert = await alertController
+        .create({
+          cssClass: 'my-custom-class',
+          header: 'LET OP!',
+          message: 'U staat op het punt een noodoproep te doen. Misbruik resuleert in uitschakeling van deze functie',
+          buttons: [
+            {
+              text: 'Niet Levensbedreigende Situatie Maar Wel Spoedeisend',
+              role: 'cancel',
+              cssClass: 'secondary',
+              handler: blah => {
+                console.log('Confirm Cancel:', blah)
+              },
+            },
+            {
+              text: 'Levensbedreigende Situatie',
+              handler: () => {
+                console.log('Confirm Okay')
+              },
+            },
+          ],
+        });
+      return alert.present();
+    },
+  }
+};
+</script>
+
+<style scoped>
+ion-item-divider {
+  border-width: 0;
+}
+
+.vierkant {
+  height: 130px;
+  width: 130px;
+}
+</style>

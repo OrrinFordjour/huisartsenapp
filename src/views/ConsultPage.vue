@@ -12,28 +12,30 @@
         </ion-item>
         <ion-item-divider></ion-item-divider>
         <ion-item>
-          <ion-label>Start Date</ion-label>
+          <ion-label>Geplande Datum</ion-label>
           <ion-datetime
-            value="DD-MM-YYYY"
-            placeholder="Select Date"
+            value="YYYY-MM-DD"
+            placeholder="datum"
           ></ion-datetime>
         </ion-item>
         <ion-item>
-          <ion-label>Start Time</ion-label>
+          <ion-label>Tijd</ion-label>
           <ion-datetime
             display-format="h:mm A"
             picker-format="h:mm A"
             value="1990-02-19T07:43Z"
+            v-model="datum"
+          
           ></ion-datetime>
         </ion-item>
         <ion-item>
-          <ion-label>aantal minuten</ion-label>
-          <ion-select placeholder="Select One">
-            <ion-select-option value="30">30 minuten</ion-select-option>
-            <ion-select-option value="60">60 minuten</ion-select-option>
+          <ion-label>Geduurde consult</ion-label>
+          <ion-select placeholder="consult">
+            <ion-select-option v-model="tijd" value="30">30 minuten</ion-select-option>
+            <ion-select-option v-model="tijd" value="60">60 minuten</ion-select-option>
           </ion-select>
         </ion-item>
-        <ion-button class="ion-padding" expand="block" color="success"
+        <ion-button @click="presentAlertConfirm" class="ion-padding" expand="block" color="success"
           >inplannen</ion-button
         >
       </ion-list>
@@ -57,6 +59,7 @@ import {
   IonDatetime,
   IonTitle,
   IonInput,
+  alertController
 } from "@ionic/vue";
 export default {
   components: {
@@ -74,6 +77,39 @@ export default {
     IonDatetime,
     IonTitle,
     IonInput,
+  },
+  data () {
+    return {
+      datum: null,
+      tijd: null
+    }
+  },
+  methods: {
+    async presentAlertConfirm() {
+      const alert = await alertController
+        .create({
+          cssClass: 'my-custom-class',
+          message: 'uw afsraak staat gepland',
+          buttons: [
+            {
+              text: 'Cancel',
+              role: 'cancel',
+              cssClass: 'secondary',
+              handler: blah => {
+                console.log('Confirm Cancel:', blah)
+              },
+            },
+            {
+              text: 'Okay',
+              handler: () => {
+                console.log('Confirm Okay')
+              },
+            },
+          ],
+        });
+      return alert.present();
+    },
+
   },
 };
 </script>
