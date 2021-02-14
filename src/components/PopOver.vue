@@ -1,9 +1,9 @@
 <template>
   <ion-content class="ion-padding">
     <ion-list>
-            <ion-item button router-link="tab1">Home</ion-item>
-            <ion-item button >Profiel</ion-item>
-            <ion-item button>Help</ion-item>
+            <ion-item button router-link="/tabs/tab7">Home</ion-item>
+            <ion-item button router-link="/profiel">Profiel</ion-item>
+            <ion-item button router-link="/help">Help</ion-item>
             <ion-item lines="none" button @Click="dismissPopover()">Close</ion-item>
           </ion-list>
   </ion-content>

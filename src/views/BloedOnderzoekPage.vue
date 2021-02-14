@@ -44,6 +44,7 @@
 </template>
 
 <script>
+import PopOver from "../components/PopOver.vue";
 import {
   IonItem,
   IonLabel,
@@ -57,6 +58,9 @@ import {
   IonTitle,
   IonToolbar,
   IonHeader,
+  popoverController,
+  IonButtons,
+  IonMenuButton,
 } from "@ionic/vue";
 export default {
   name: "bloed",
@@ -73,6 +77,19 @@ export default {
     IonTitle,
     IonToolbar,
     IonHeader,
+    IonButtons,
+    IonMenuButton,
+  },
+  methods: {
+    async openPopover(ev) {
+      const popover = await popoverController.create({
+        component: PopOver,
+        cssClass: "my-custom-class",
+        event: ev,
+        translucent: true,
+      });
+      return popover.present();
+    },
   },
 };
 </script>

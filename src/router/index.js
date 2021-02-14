@@ -4,6 +4,8 @@ import Tabs from '../views/Tabs.vue'
 import Login from '../pages/Login.vue'
 import SignPage from '../pages/SignPage.vue'
 import ChatWindow from '../views/ChatWindow.vue'
+import ProfielPage from '../pages/ProfielPage.vue'
+import HelpPage from '../pages/HelpPage.vue'
 import firebase from 'firebase'
 
 
@@ -17,6 +19,15 @@ const routes = [
     path: '/signup',
     component: SignPage,
     name: 'signup',
+  },
+  {
+    path: '/profiel',
+    component: ProfielPage,
+    name: 'profiel',
+  },{
+    path: '/help',
+    component: HelpPage,
+    name: 'help',
   },
   {
     path: '/tab1/:id',
@@ -73,6 +84,10 @@ const routes = [
       {
         path: 'tab6',
         component: () => import('@/views/SpoedAlarm.vue')
+      },
+      {
+        path: 'tab7',
+        component: () => import('@/views/Homepage.vue')
       },
 
 
