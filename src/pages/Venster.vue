@@ -3,7 +3,7 @@
     <ion-toolbar>
       <ion-title>{{ title }}</ion-title>
       <ion-buttons slot="end">
-        <ion-button @click="dismissModal()">Close</ion-button>
+        <ion-button @click="closeVenster()">Close</ion-button>
       </ion-buttons>
     </ion-toolbar>
   </ion-header>
@@ -67,6 +67,7 @@ import {
   alertController
 } from "@ionic/vue";
 import { defineComponent } from "vue";
+import Venster from './Venster.vue'
 
 export default defineComponent({
   name: "venster",
@@ -91,8 +92,8 @@ export default defineComponent({
     IonItem,
   },
   methods: {
-    dismissModal() {
-      this.$router.push({ name: "tabs7" });
+    closeVenster() {
+      this.$router.push({ name: tab7 });
     },
    async huisArtsAdres () {
       const alert = await alertController.create({

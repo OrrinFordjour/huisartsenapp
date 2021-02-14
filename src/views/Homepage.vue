@@ -3,6 +3,9 @@
     <ion-header>
       <ion-toolbar>
         <ion-title>NieuwsBerichten</ion-title>
+        <ion-buttons slot="end">
+          <ion-menu-button auto-hide="false"></ion-menu-button>
+        </ion-buttons>
       </ion-toolbar>
     </ion-header>
     <ion-content :fullscreen="true">
@@ -28,7 +31,7 @@ import {
   IonTitle,
   IonContent,
 } from "@ionic/vue";
-  
+
 export default {
   name: "home",
   components: {

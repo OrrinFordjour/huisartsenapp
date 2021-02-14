@@ -75,7 +75,7 @@ const routes= [
       },
       {
         path: 'tab7',
-        name: 'tabs7',
+        name: 'tab7',
         component: () => import('@/views/SpoedAlarm.vue')
       },
       
