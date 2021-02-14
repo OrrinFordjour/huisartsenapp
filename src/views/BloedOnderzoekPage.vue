@@ -3,6 +3,9 @@
     <ion-header>
       <ion-toolbar>
         <ion-title>Bloedonderzoek</ion-title>
+        <ion-buttons @click="openPopover" slot="end">
+          <ion-menu-button auto-hide="false"></ion-menu-button>
+        </ion-buttons>
       </ion-toolbar>
     </ion-header>
     <ion-content :fullscreen="true">

@@ -7,7 +7,7 @@ import ChatWindow from '../views/ChatWindow.vue'
 import firebase from 'firebase'
 
 
-const routes= [
+const routes = [
   {
     path: '/',
     component: Login,
@@ -38,47 +38,44 @@ const routes= [
   {
     path: '/tabs/',
     component: Tabs,
-/*     meta: {
-      requiresAuth: true
-    }, */
+    /*     meta: {
+          requiresAuth: true
+        }, */
     children: [
 
       {
         path: 'tab1',
         name: 'tab1',
-/*         meta: {
-          requiresAuth: true
-        }, */
-        component: () => import('@/views/Homepage.vue')
-      },
-      {
-        path: 'tab2',
+        /*         meta: {
+                  requiresAuth: true
+                }, */
+
         component: () => import('@/views/BloedOnderzoekPage.vue')
       },
       {
-        path: 'tab3',
+        path: 'tab2',
         component: () => import('@/views/VerWijzingPage.vue')
       },
       {
-        path: 'tab4',
+        path: 'tab3',
         component: () => import('@/views/MedicijnenPage.vue')
+      },
+      {
+        path: 'tab4',
+        component: () => import('@/views/ConsultPage.vue')
       },
       {
         path: 'tab5',
         name: 'tab5',
-        component: () => import('@/views/ConsultPage.vue')
+        component: () => import('@/views/ChatPage.vue')
       }
       ,
       {
         path: 'tab6',
-        component: () => import('@/views/ChatPage.vue')
-      },
-      {
-        path: 'tab7',
-        name: 'tab7',
         component: () => import('@/views/SpoedAlarm.vue')
       },
-      
+
+
     ]
   }
 ]
@@ -94,10 +91,10 @@ router.beforeEach((to, from, next) => {
     if (user) {
       next()
     } else {
-      next({ name: 'login'})
+      next({ name: 'login' })
     }
   } else {
-    next ()
+    next()
   }
 })
 

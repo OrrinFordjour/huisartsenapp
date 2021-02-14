@@ -3,7 +3,7 @@
     <ion-toolbar>
       <ion-title>{{ title }}</ion-title>
       <ion-buttons slot="end">
-        <ion-button @click="closeVenster()">Close</ion-button>
+        <ion-button @click="close()">Close</ion-button>
       </ion-buttons>
     </ion-toolbar>
   </ion-header>
@@ -46,7 +46,7 @@
       <p>het slachtoffer is mobiel</p>
     </ion-button>
 
-    <ion-button @click="locatieSlachtoffer"  class="ion-padding" expand="block">
+    <ion-button @click="locatieSlachtoffer" class="ion-padding" expand="block">
       <p>het slachtoffer is niet mobiel</p>
     </ion-button>
   </ion-content>
@@ -64,10 +64,10 @@ import {
   IonSelect,
   IonSelectOption,
   IonItem,
-  alertController
+  alertController,
+  modalController
 } from "@ionic/vue";
 import { defineComponent } from "vue";
-import Venster from './Venster.vue'
 
 export default defineComponent({
   name: "venster",
@@ -92,10 +92,10 @@ export default defineComponent({
     IonItem,
   },
   methods: {
-    closeVenster() {
-      this.$router.push({ name: tab7 });
+    close() {
+      modalController.dismiss();
     },
-   async huisArtsAdres () {
+    async huisArtsAdres() {
       const alert = await alertController.create({
         cssClass: "my-custom-class",
         header: "LET OP!",
@@ -120,22 +120,19 @@ export default defineComponent({
       });
       return alert.present();
     },
-       async locatieSlachtoffer () {
+    async locatieSlachtoffer() {
       const alert = await alertController.create({
         cssClass: "my-custom-class",
         header: "Uw Locatie",
-        message:
-          "Vul alstublieft uw locatie in",
+        message: "Vul alstublieft uw locatie in",
         inputs: [
           {
-            name:'adresgevens',
-            placeholder: 'adresgevens',
-
+            name: "adresgevens",
+            placeholder: "adresgevens",
           },
           {
-            name:'postcode',
-            placeholder: 'postcode',
-
+            name: "postcode",
+            placeholder: "postcode",
           },
         ],
         buttons: [
