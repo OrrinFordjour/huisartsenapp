@@ -3,6 +3,9 @@
     <ion-header>
       <ion-toolbar>
         <ion-title>SpoedAlarm</ion-title>
+                <ion-buttons @click="openPopover" slot="end">
+          <ion-menu-button auto-hide="false"></ion-menu-button>
+        </ion-buttons>
       </ion-toolbar>
     </ion-header>
     <ion-content :fullscreen="true">
@@ -19,6 +22,7 @@
 
 <script>
 import Venster from "@/pages/Venster.vue";
+import PopOver from '../components/PopOver.vue';
 import {
   IonPage,
   IonToolbar,
@@ -28,7 +32,10 @@ import {
   IonButton,
   IonItemDivider,
   alertController,
-  modalController
+  modalController,
+    IonMenuButton,
+  IonButtons,
+  popoverController
 } from "@ionic/vue";
 export default {
   name: "spoedalarm",
@@ -40,6 +47,8 @@ export default {
     IonTitle,
     IonButton,
     IonItemDivider,
+        IonMenuButton,
+    IonButtons,
   },
   methods: {
     async presentAlertConfirm() {
@@ -74,6 +83,17 @@ export default {
         ],
       });
       return alert.present();
+    },
+
+    async openPopover(ev) {
+      const popover = await popoverController
+        .create({
+          component: PopOver,
+          cssClass: 'my-custom-class',
+          event: ev,
+          translucent: true
+        })
+      return popover.present();
     },
   },
 };

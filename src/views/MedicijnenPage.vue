@@ -3,6 +3,9 @@
     <ion-header>
       <ion-toolbar>
         <ion-title>Mijn Medicijnen</ion-title>
+        <ion-buttons @click="openPopover" slot="end">
+          <ion-menu-button auto-hide="false"></ion-menu-button>
+        </ion-buttons>
       </ion-toolbar>
     </ion-header>
     <ion-item @click="presentActionSheet">Diclofenac </ion-item>
@@ -17,6 +20,7 @@
 </template>
 
 <script>
+import PopOver from "../components/PopOver.vue";
 import {
   IonItem,
   IonPage,
@@ -25,6 +29,9 @@ import {
   IonTitle,
   IonContent,
   actionSheetController,
+  IonMenuButton,
+  IonButtons,
+  popoverController,
 } from "@ionic/vue";
 import { caretForwardCircle, heart, trash, share } from "ionicons/icons";
 
@@ -37,6 +44,8 @@ export default {
     IonToolbar,
     IonTitle,
     IonContent,
+    IonMenuButton,
+    IonButtons,
   },
   methods: {
     async presentActionSheet() {
@@ -76,6 +85,16 @@ export default {
         ],
       });
       return actionSheet.present();
+    },
+
+    async openPopover(ev) {
+      const popover = await popoverController.create({
+        component: PopOver,
+        cssClass: "my-custom-class",
+        event: ev,
+        translucent: true,
+      });
+      return popover.present();
     },
   },
 };

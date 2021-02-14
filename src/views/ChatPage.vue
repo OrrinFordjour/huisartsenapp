@@ -1,5 +1,13 @@
 <template>
   <ion-page>
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>DokterChat</ion-title>
+        <ion-buttons @click="openPopover" slot="end">
+          <ion-menu-button auto-hide="false"></ion-menu-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
     <ion-content fullscreen="true">
       <ion-card class="welcome">
         <ion-card-content>
@@ -19,6 +27,7 @@
 </template>
 
 <script>
+import PopOver from "../components/PopOver.vue";
 import {
   IonPage,
   IonContent,
@@ -28,6 +37,12 @@ import {
   IonLabel,
   IonInput,
   IonButton,
+  IonTitle,
+  IonMenuButton,
+  IonButtons,
+  IonToolbar,
+  IonHeader,
+  popoverController
 } from "@ionic/vue";
 export default {
   name: "chat",
@@ -40,6 +55,11 @@ export default {
     IonLabel,
     IonInput,
     IonButton,
+    IonTitle,
+    IonMenuButton,
+    IonButtons,
+    IonToolbar,
+    IonHeader,
   },
   data() {
     return {
@@ -50,10 +70,21 @@ export default {
   methods: {
     enterChat() {
       if (this.name) {
-        this.$router.push({ name: 'ChatWindow', params: {name: this.name}})
+        this.$router.push({ name: "ChatWindow", params: { name: this.name } });
       } else {
         this.feedback = "Vul uw gewenst naam in ";
       }
+    },
+
+    async openPopover(ev) {
+      const popover = await popoverController
+        .create({
+          component: PopOver,
+          cssClass: 'my-custom-class',
+          event: ev,
+          translucent: true
+        })
+      return popover.present();
     },
   },
 };
@@ -65,8 +96,7 @@ ion-card-content {
 }
 
 .welcome {
-
-  margin-top: 190px;
+  margin-top: 150px;
 }
 .welcome h2 {
   font-size: 2em;
@@ -80,5 +110,4 @@ ion-card-content {
   margin-top: 20px;
   color: red;
 }
-
 </style>

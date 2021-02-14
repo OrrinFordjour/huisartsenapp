@@ -3,6 +3,9 @@
     <ion-header>
       <ion-toolbar>
         <ion-title>DokterChat</ion-title>
+        <ion-buttons @click="openPopover" slot="end">
+          <ion-menu-button auto-hide="false"></ion-menu-button>
+        </ion-buttons>
       </ion-toolbar>
     </ion-header>
     <ion-content :fullscreen="true" class="chat">
@@ -38,6 +41,7 @@
 import NewMessage from "../components/NewMessage.vue";
 import db from "@/firebase/init.js";
 import moment from "moment";
+import PopOver from "../components/PopOver.vue";
 import {
   IonContent,
   IonPage,
@@ -50,6 +54,9 @@ import {
   IonTitle,
   IonToolbar,
   IonHeader,
+  IonMenuButton,
+  IonButtons,
+  popoverController,
 } from "@ionic/vue";
 export default {
   name: "ChatWindow",
@@ -67,6 +74,8 @@ export default {
     IonTitle,
     IonToolbar,
     IonHeader,
+    IonMenuButton,
+    IonButtons,
   },
   data() {
     return {
@@ -89,6 +98,17 @@ export default {
         }
       });
     });
+  },
+  methods: {
+    async openPopover(ev) {
+      const popover = await popoverController.create({
+        component: PopOver,
+        cssClass: "my-custom-class",
+        event: ev,
+        translucent: true,
+      });
+      return popover.present();
+    },
   },
 };
 </script>

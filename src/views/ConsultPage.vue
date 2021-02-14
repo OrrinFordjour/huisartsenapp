@@ -3,6 +3,9 @@
     <ion-header>
       <ion-toolbar>
         <ion-title>ColsultPlannen</ion-title>
+        <ion-buttons @click="openPopover" slot="end">
+          <ion-menu-button auto-hide="false"></ion-menu-button>
+        </ion-buttons>
       </ion-toolbar>
     </ion-header>
     <ion-content :fullscreen="true">
@@ -44,6 +47,7 @@
 </template>
 
 <script>
+import PopOver from '../components/PopOver.vue';
 import {
   IonPage,
   IonHeader,
@@ -59,7 +63,10 @@ import {
   IonDatetime,
   IonTitle,
   IonInput,
-  alertController
+  alertController,
+  IonMenuButton,
+  IonButtons,
+  popoverController
 } from "@ionic/vue";
 export default {
   components: {
@@ -77,6 +84,8 @@ export default {
     IonDatetime,
     IonTitle,
     IonInput,
+      IonMenuButton,
+    IonButtons,
   },
   data () {
     return {
@@ -108,6 +117,17 @@ export default {
           ],
         });
       return alert.present();
+    },
+
+    async openPopover(ev) {
+      const popover = await popoverController
+        .create({
+          component: PopOver,
+          cssClass: 'my-custom-class',
+          event: ev,
+          translucent: true
+        })
+      return popover.present();
     },
 
   },

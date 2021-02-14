@@ -3,6 +3,9 @@
     <ion-header>
       <ion-toolbar>
         <ion-title>Verwijzing</ion-title>
+        <ion-buttons @click="openPopover" slot="end">
+          <ion-menu-button auto-hide="false"></ion-menu-button>
+        </ion-buttons>
       </ion-toolbar>
     </ion-header>
     <ion-content :fullscreen="true">
@@ -37,6 +40,7 @@
 </template>
 
 <script>
+import PopOver from "../components/PopOver.vue";
 import {
   IonItem,
   IonLabel,
@@ -48,7 +52,10 @@ import {
   IonToolbar,
   IonHeader,
   IonContent,
-  IonTitle
+  IonTitle,
+  IonMenuButton,
+  IonButtons,
+  popoverController,
 } from "@ionic/vue";
 export default {
   name: "verwijzing",
@@ -63,7 +70,20 @@ export default {
     IonToolbar,
     IonHeader,
     IonContent,
-    IonTitle
+    IonTitle,
+    IonMenuButton,
+    IonButtons,
+  },
+  methods: {
+    async openPopover(ev) {
+      const popover = await popoverController.create({
+        component: PopOver,
+        cssClass: "my-custom-class",
+        event: ev,
+        translucent: true,
+      });
+      return popover.present();
+    },
   },
 };
 </script>
