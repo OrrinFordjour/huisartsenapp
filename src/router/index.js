@@ -24,7 +24,7 @@ const routes = [
     path: '/profiel',
     component: ProfielPage,
     name: 'profiel',
-  },{
+  }, {
     path: '/help',
     component: HelpPage,
     name: 'help',
@@ -83,6 +83,7 @@ const routes = [
       ,
       {
         path: 'tab6',
+        name: 'tab6',
         component: () => import('@/views/SpoedAlarm.vue')
       },
       {

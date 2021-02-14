@@ -27,6 +27,18 @@
         </ion-card>
       </form>
     </ion-content>
+    <ion-footer class="ion-no-border">
+      <ion-toolbar>
+        <ion-button
+          router-link="/tabs/tab6"
+          class="spoed"
+          expand="block"
+          color="success"
+        >
+          SPOED</ion-button
+        >
+      </ion-toolbar>
+    </ion-footer>
   </ion-page>
 </template>
 
@@ -42,6 +54,8 @@ import {
   IonInput,
   IonButton,
   IonLabel,
+  IonFooter,
+  IonToolbar,
 } from "@ionic/vue";
 import firebase from "firebase";
 export default {
@@ -57,6 +71,8 @@ export default {
     IonInput,
     IonButton,
     IonLabel,
+    IonFooter,
+    IonToolbar,
   },
   data() {
     return {
@@ -67,17 +83,20 @@ export default {
   },
   methods: {
     login() {
-      if(this.email, this.password) {
-          firebase.auth().signInWithEmailAndPassword(this.email, this.password)
-          .then(cred => {
-              console.log(cred.user)
-              this.$router.push({name: 'tab1'})
-          }).catch(err => {
-              this.feedback = err.message
+      if ((this.email, this.password)) {
+        firebase
+          .auth()
+          .signInWithEmailAndPassword(this.email, this.password)
+          .then((cred) => {
+            console.log(cred.user);
+            this.$router.push({ name: "tab1" });
           })
-          this.feedback = null
-      }else {
-          this.feedback = 'vul beide velden in'
+          .catch((err) => {
+            this.feedback = err.message;
+          });
+        this.feedback = null;
+      } else {
+        this.feedback = "vul beide velden in";
       }
     },
   },
@@ -94,7 +113,7 @@ ion-item {
 }
 
 .login-container {
-  margin-top: 140px;
+  margin-top: 80px;
 }
 
 .login-container ion-button {
@@ -103,5 +122,9 @@ ion-item {
 
 .red-text {
   color: red;
+}
+
+.spoed {
+  margin-bottom: 30px;
 }
 </style>
