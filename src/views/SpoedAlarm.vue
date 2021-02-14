@@ -7,13 +7,18 @@
     </ion-header>
     <ion-content :fullscreen="true">
       <ion-item-divider></ion-item-divider>
-      <ion-button @click="presentAlertConfirm" class="ion-padding" expand="block"
-        >ALAMEER HUISARTS</ion-button>
+      <ion-button
+        @click="presentAlertConfirm"
+        class="ion-padding"
+        expand="block"
+        >ALAMEER HUISARTS</ion-button
+      >
     </ion-content>
   </ion-page>
 </template>
 
 <script>
+import Venster from "@/pages/Venster.vue";
 import {
   IonPage,
   IonToolbar,
@@ -22,7 +27,8 @@ import {
   IonTitle,
   IonButton,
   IonItemDivider,
-  alertController
+  alertController,
+  modalController
 } from "@ionic/vue";
 export default {
   name: "spoedalarm",
@@ -37,31 +43,39 @@ export default {
   },
   methods: {
     async presentAlertConfirm() {
-      const alert = await alertController
-        .create({
-          cssClass: 'my-custom-class',
-          header: 'LET OP!',
-          message: 'U staat op het punt een noodoproep te doen. Misbruik resuleert in uitschakeling van deze functie',
-          buttons: [
-            {
-              text: 'Niet Levensbedreigende Situatie Maar Wel Spoedeisend',
-              role: 'cancel',
-              cssClass: 'secondary',
-              handler: blah => {
-                console.log('Confirm Cancel:', blah)
-              },
+      const alert = await alertController.create({
+        cssClass: "my-custom-class",
+        header: "LET OP!",
+        message:
+          "U staat op het punt een noodoproep te doen. Misbruik resuleert in uitschakeling van deze functie",
+        buttons: [
+          {
+            text: "Niet Levensbedreigende Situatie Maar Wel Spoedeisend",
+            role: "cancel",
+            cssClass: "secondary",
+            handler: async () => {
+              const modal = await modalController.create({
+                component: Venster,
+                cssClass: "my-custom-class",
+                componentProps: {
+                  title: "SpoedFormulier",
+                },
+              });
+              return modal.present();
             },
-            {
-              text: 'Levensbedreigende Situatie',
-              handler: () => {
-                console.log('Confirm Okay')
-              },
+          },
+
+          {
+            text: "Levensbedreigende Situatie",
+            handler: () => {
+              console.log("Confirm Okay");
             },
-          ],
-        });
+          },
+        ],
+      });
       return alert.present();
     },
-  }
+  },
 };
 </script>
 

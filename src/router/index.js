@@ -65,6 +65,7 @@ const routes= [
       },
       {
         path: 'tab5',
+        name: 'tab5',
         component: () => import('@/views/ConsultPage.vue')
       }
       ,
@@ -74,6 +75,7 @@ const routes= [
       },
       {
         path: 'tab7',
+        name: 'tabs7',
         component: () => import('@/views/SpoedAlarm.vue')
       },
       
