@@ -26,7 +26,6 @@
               <ion-button>facebook</ion-button>
             </ion-item>
             <p class="red-text" v-if="feedback">{{ feedback }}</p>
-            <p>Inloggegevens kwijt?</p>
           </ion-card-content>
         </ion-card>
       </form>
