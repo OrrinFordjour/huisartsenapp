@@ -74,6 +74,8 @@ export default {
       } else {
         this.feedback = "Vul uw gewenst naam in ";
       }
+      this.name = null
+      this.feedback = null
     },
 
     async openPopover(ev) {

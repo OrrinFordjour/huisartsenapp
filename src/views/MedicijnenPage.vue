@@ -33,7 +33,7 @@ import {
   IonButtons,
   popoverController,
 } from "@ionic/vue";
-import { caretForwardCircle, heart, trash, share } from "ionicons/icons";
+import { people, helpCircle, archive, newspaper } from "ionicons/icons";
 
 export default {
   name: "medicijnen",
@@ -56,28 +56,28 @@ export default {
           {
             text: "Bijsluiter",
             role: "",
-            icon: trash,
+            icon: newspaper,
             handler: () => {
               console.log("Bijsluiter");
             },
           },
           {
             text: "Nieuw recept aanvragen",
-            icon: share,
+            icon: archive,
             handler: () => {
               console.log("Nieuw recept aanvragen");
             },
           },
           {
             text: "Vragen stellen over gebruik",
-            icon: caretForwardCircle,
+            icon: people,
             handler: () => {
               console.log("Vragen stellen over gebruik");
             },
           },
           {
             text: "FAQ",
-            icon: heart,
+            icon: helpCircle,
             handler: () => {
               console.log("FAQ");
             },

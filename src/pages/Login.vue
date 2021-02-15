@@ -1,5 +1,10 @@
 <template>
   <ion-page>
+    <ion-header class="ion-no-border">
+      <ion-toolbar>
+        <ion-button @click="toSignPage" size="small" fill="clear" slot="end">Registeren</ion-button>
+      </ion-toolbar>
+    </ion-header>
     <ion-content class="ion-text-center">
       <form @submit.prevent="login">
         <ion-card class="login-container">
@@ -56,6 +61,7 @@ import {
   IonLabel,
   IonFooter,
   IonToolbar,
+  IonHeader
 } from "@ionic/vue";
 import firebase from "firebase";
 export default {
@@ -73,6 +79,7 @@ export default {
     IonLabel,
     IonFooter,
     IonToolbar,
+    IonHeader
   },
   data() {
     return {
@@ -99,6 +106,9 @@ export default {
         this.feedback = "vul beide velden in";
       }
     },
+    toSignPage(){
+      this.$router.push({ name: "signup" });
+    }
   },
 };
 </script>
