@@ -6,6 +6,7 @@ import SignPage from '../pages/SignPage.vue'
 import ChatWindow from '../views/ChatWindow.vue'
 import ProfielPage from '../pages/ProfielPage.vue'
 import HelpPage from '../pages/HelpPage.vue'
+import LogVergeten from '../pages/LogVergeten.vue'
 import firebase from 'firebase'
 
 
@@ -19,6 +20,11 @@ const routes = [
     path: '/signup',
     component: SignPage,
     name: 'signup',
+  },
+  {
+    path: '/logvergeten',
+    component: LogVergeten,
+    name: 'logvergeten',
   },
   {
     path: '/profiel',

@@ -2,11 +2,10 @@
   <ion-page>
     <ion-header class="ion-no-border">
       <ion-toolbar>
-        <ion-button @click="toSignPage" size="small" fill="clear" slot="end">Registeren</ion-button>
       </ion-toolbar>
     </ion-header>
     <ion-content class="ion-text-center">
-      <form @submit.prevent="login">
+      <form @submit.prevent="resetWachtWoord">
         <ion-card class="login-container">
           <ion-card-header>
             <ion-card-title>InLogVergeten</ion-card-title>
@@ -16,34 +15,16 @@
               <ion-label position="floating">Email</ion-label>
               <ion-input type="email" v-model="email"></ion-input>
             </ion-item>
-            <ion-item>
-              <ion-label position="floating">Wachtwoord</ion-label>
-              <ion-input type="password" v-model="password"></ion-input>
-            </ion-item>
-            <p class="text-media">Inloggen met Google & Facebook</p>
             <ion-item lines="none" class="btn-media">
-              <ion-button type="submit" color="tertiary">InLoggen</ion-button>
-              <ion-button color="success">Google</ion-button>
-              <ion-button>facebook</ion-button>
+              <ion-button type="submit" color="tertiary"
+                >restart wachtwoord</ion-button
+              >
             </ion-item>
             <p class="red-text" v-if="feedback">{{ feedback }}</p>
-            <p>Inloggegevens kwijt?</p>
           </ion-card-content>
         </ion-card>
       </form>
     </ion-content>
-    <ion-footer class="ion-no-border">
-      <ion-toolbar>
-        <ion-button
-          router-link="/tabs/tab6"
-          class="spoed"
-          expand="block"
-          color="success"
-        >
-          SPOED</ion-button
-        >
-      </ion-toolbar>
-    </ion-footer>
   </ion-page>
 </template>
 
@@ -59,9 +40,8 @@ import {
   IonInput,
   IonButton,
   IonLabel,
-  IonFooter,
   IonToolbar,
-  IonHeader
+  IonHeader,
 } from "@ionic/vue";
 import firebase from "firebase";
 export default {
@@ -77,9 +57,8 @@ export default {
     IonInput,
     IonButton,
     IonLabel,
-    IonFooter,
     IonToolbar,
-    IonHeader
+    IonHeader,
   },
   data() {
     return {
@@ -89,11 +68,11 @@ export default {
     };
   },
   methods: {
-    login() {
-      if ((this.email, this.password)) {
+    resetWachtWoord() {
+      if ((this.email)) {
         firebase
           .auth()
-          .signInWithEmailAndPassword(this.email, this.password)
+          .sendPasswordResetEmail(this.email)
           .then((cred) => {
             console.log(cred.user);
             this.$router.push({ name: "tab1" });
@@ -103,12 +82,9 @@ export default {
           });
         this.feedback = null;
       } else {
-        this.feedback = "vul beide velden in";
+        this.feedback = "invulveld moet in gevuld worden";
       }
     },
-    toSignPage(){
-      this.$router.push({ name: "signup" });
-    }
   },
 };
 </script>
@@ -123,7 +99,7 @@ ion-item {
 }
 
 .login-container {
-  margin-top: 80px;
+  margin-top: 160px;
 }
 
 .login-container ion-button {
