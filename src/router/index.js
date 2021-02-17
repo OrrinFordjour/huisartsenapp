@@ -55,17 +55,17 @@ const routes = [
   {
     path: '/tabs/',
     component: Tabs,
-    /*     meta: {
+        meta: {
           requiresAuth: true
-        }, */
+        },
     children: [
 
       {
         path: 'tab1',
         name: 'tab1',
-        /*         meta: {
+                meta: {
                   requiresAuth: true
-                }, */
+                },
 
         component: () => import('@/views/BloedOnderzoekPage.vue')
       },
@@ -94,6 +94,7 @@ const routes = [
       },
       {
         path: 'tab7',
+        name:'tab7',
         component: () => import('@/views/Homepage.vue')
       },
 
